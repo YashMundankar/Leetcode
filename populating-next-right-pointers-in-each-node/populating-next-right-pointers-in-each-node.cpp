@@ -20,12 +20,27 @@ class Solution {
 public:
   
     Node* connect(Node* root) {
-    if(root == NULL) return NULL;
-    if(root->left != NULL) root->left->next = root->right;
-    if(root->right != NULL && root->next != NULL) root->right->next = root->next->left;
-    connect(root->left);
-    connect(root->right);
-    return root;
+        if(root==NULL){
+            return root;
+        }
+    Node* black=root;
+    while(black->left!=NULL && black!=NULL)
+    {
+        Node* n=black;
+        while(true)
+        {
+        n->left->next=n->right;
+            if(n->next==NULL)
+            {
+                break;
+            }
+        n->right->next=n->next->left;
+            n=n->next;
         
+        }
+        black=black->left;
+        
+    }
+        return root;
     }
 };
