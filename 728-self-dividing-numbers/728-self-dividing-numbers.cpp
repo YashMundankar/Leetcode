@@ -2,14 +2,16 @@ class Solution {
 public:
     
     bool check(int n){
-        string temp=to_string(n);
-        for(int i=0;i<temp.size();i++){
-            if(temp[i]=='0'){
+               int temp=n;
+        while(temp){
+            int rem=temp%10;
+            if(rem==0){
                 return false;
             }
-            if(n%(temp[i]-'0')!=0){
+            if(n%rem!=0){
                 return false;
             }
+            temp/=10;
         }
         return true;
     }
