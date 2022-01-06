@@ -1,15 +1,13 @@
 class Solution {
 public:
-    int arrayPairSum(vector<int>& nums) {
-        priority_queue<int>mx;
-        for(auto i: nums){
-            mx.push(i);
-        }
-        int sum=0;
-        while(!mx.empty()){
-            mx.pop();
-            sum+=mx.top();
-            mx.pop();
+    int arrayPairSum(vector<int> &nums)
+    {
+        sort(nums.begin(),nums.end());
+        int sum=0,i=0;
+        while(i<nums.size()){
+            sum+=nums[i];
+            i+=2;
+          
         }
         
         return sum;
