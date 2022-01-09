@@ -9,13 +9,13 @@ public:
         return sum;
     }
     int countBalls(int lowLimit, int highLimit) {
-        map<int,int>m1;
+        vector<int>v(46,0);
         for(int i=lowLimit;i<=highLimit;i++){
-            m1[func(i)]++;
+            v[func(i)]++;
         }
         int mx=INT_MIN;
-        for(auto i: m1){
-            mx=max(i.second,mx);
+        for(auto i: v){
+            mx=max(i,mx);
         }
         return mx;
         
