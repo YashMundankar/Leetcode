@@ -8,11 +8,8 @@ public:
             }
         int op=0;
         int i=1000;
-        while(i>0)
+        while(i>0 )
         {
-            if(truckSize==0){
-                break;
-            }
             if(truckSize>=v[i]){
                 op+=v[i]*i;
                 truckSize-=v[i];
@@ -20,7 +17,7 @@ public:
             }
             else{
                 op+=truckSize*i;
-                truckSize=0;
+                break;
                 
             }
             i--;
