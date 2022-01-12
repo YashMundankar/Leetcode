@@ -1,16 +1,13 @@
 class Solution {
 public:
     bool uniqueOccurrences(vector<int>& arr) {
-        map<int,int>m1;
-        vector<int>v1(1001,0);
+        vector<int>m1(2001,0);
         for(auto i: arr){
-            m1[i]++;
+            m1[i+1000]++;
         }
-        for(auto it : m1){
-            v1[it.second]++;
-        }
-        for(auto i : v1){
-            if(i>1){
+        sort(m1.begin(),m1.end());
+        for(int i=1;i<2001;i++){
+            if(m1[i] && m1[i-1]==m1[i]){
                 return false;
             }
         }
