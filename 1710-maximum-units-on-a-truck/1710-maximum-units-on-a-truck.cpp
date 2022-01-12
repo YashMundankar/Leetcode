@@ -1,27 +1,29 @@
 class Solution {
 public:
     
-    static bool func(vector<int>v1,vector<int>v2){
-        return v1[1]>v2[1];
-    }
-    
     int maximumUnits(vector<vector<int>>& boxTypes, int truckSize) {
-        sort(boxTypes.begin(),boxTypes.end(),func);
-        int op=0;
+        vector<int>v(1001,0);
         for(auto i :boxTypes ){
+            v[i[1]]+=i[0];
+            }
+        int op=0;
+        int i=1000;
+        while(i>0)
+        {
             if(truckSize==0){
                 break;
             }
-            if(truckSize>=i[0]){
-                op+=i[0]*i[1];
-                truckSize-=i[0];
+            if(truckSize>=v[i]){
+                op+=v[i]*i;
+                truckSize-=v[i];
                 
             }
             else{
-                op+=truckSize*i[1];
+                op+=truckSize*i;
                 truckSize=0;
                 
             }
+            i--;
         }
         return op;
         
