@@ -1,9 +1,9 @@
 class Solution {
 public:
     
-    int func(string s1,vector<bool>c){
+    int func(string s1,int num){
         for(auto i : s1){
-            if(c[i-'a']){
+            if(1<<i-'a'& num){
                 return 0;
             };
         }
@@ -12,14 +12,14 @@ public:
     
     int canBeTypedWords(string text, string brokenLetters) {
         int count=0;
-        vector<bool>c(27,false);
+        int num=0;
          for(auto i : brokenLetters){
-            c[i-'a']=true;
+            num|=1<<i-'a';
             }
         string token;
         stringstream ss(text);
         while(getline(ss,token,' ')){
-            count+=func(token,c);
+            count+=func(token,num);
         }
         
         return count;
