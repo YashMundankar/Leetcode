@@ -12,13 +12,15 @@
 class Solution {
 public:
     
-    int func(TreeNode* root,bool &b){
+    int func(TreeNode* root){
         if(root==NULL){
             return 0;
         }
-        int lh=func(root->left,b);
-        int rh=func(root->right,b);
-        if(abs(lh-rh)>1) b=false;
+        int lh=func(root->left);
+        if(lh==-1) return -1;
+        int rh=func(root->right);
+        if(rh==-1) return -1;
+        if(abs(lh-rh)>1) return -1;
         
         return 1+max(rh,lh);
         
@@ -26,9 +28,7 @@ public:
     
     bool isBalanced(TreeNode* root) {
         if(root==NULL) return true;
-        bool b=true;
-        func(root,b);
-        return b;
+        return func(root)!=-1;
         
     }
 };
