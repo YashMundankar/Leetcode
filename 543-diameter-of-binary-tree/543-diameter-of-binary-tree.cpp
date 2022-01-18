@@ -16,19 +16,15 @@ public:
         if(root==NULL){
             return 0;
         }
-        
-        return 1+max(func(root->left),func(root->right));
+        int lh=func(root->left);
+        int rh=func(root->right);
+        mx=max(mx,lh+rh);
+        return 1+max(lh,rh);
     }
     
     int diameterOfBinaryTree(TreeNode* root) {
         if(root==NULL) return 0;
-        int lh=func(root->left);
-        int rh=func(root->right);
-        
-        if(lh+rh>mx) mx=lh+rh;
-        diameterOfBinaryTree(root->left);
-        diameterOfBinaryTree(root->right);
-        
+        func(root);
         return mx;
         
     }
