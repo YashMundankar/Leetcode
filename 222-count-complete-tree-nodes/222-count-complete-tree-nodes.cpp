@@ -12,26 +12,37 @@
 class Solution {
 public:
     
-    void level_order(TreeNode* root, vector<int>&v1){
-        if(root==NULL) return;
-        queue<TreeNode*>q1;
-        q1.push(root);
-        while(!q1.empty()){
-            int size=q1.size();
-            for(int i=0;i<size;i++){
-                TreeNode* node=q1.front();
-                q1.pop();
-                v1.push_back(node->val);
-                if(node->left) q1.push(node->left);
-                if(node->right) q1.push(node->right);
-            }
+    int pow(int val, int p ){
+        if(p==0){
+            return 1;
         }
+        return val*pow(val,p-1);
     }
+    
+    int cal_h_left(TreeNode *root){
+        int n=0;
+        while(root!=NULL){
+            root=root->left;
+            n++;
+        }
+        return n;
+    }
+     int cal_h_right(TreeNode *root){
+        int n=0;
+        while(root!=NULL){
+            root=root->right;
+            n++;
+        }
+        return n;
+    }
+    
     int countNodes(TreeNode* root) {
         if(root==NULL) return 0;
-        vector<int>v1;
-        level_order(root,v1);
-        return v1.size();
-        
+        int leftH=cal_h_left(root);
+        int rightH=cal_h_right(root);
+        if(leftH==rightH){
+            return (pow(2,leftH))-1;
+        }
+        return 1 + countNodes(root->left) +countNodes(root->right);
     }
 };
