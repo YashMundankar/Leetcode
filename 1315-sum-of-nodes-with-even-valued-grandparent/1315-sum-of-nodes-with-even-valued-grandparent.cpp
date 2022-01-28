@@ -12,33 +12,16 @@
 class Solution {
 public:
     
-    void traverse(TreeNode* root,int &sum){
-        if(root==NULL) return;
-        if(root->left){
-            if(root->left->left){
-                if(root->val%2==0) sum+=root->left->left->val;
-            }
-            if(root->left->right){
-                if(root->val%2==0) sum+=root->left->right->val;
-            }
-        }
-        
-        if(root->right){
-            if(root->right->left){
-                if(root->val%2==0) sum+=root->right->left->val;
-            }
-            if(root->right->right){
-                if(root->val%2==0) sum+=root->right->right->val;
-            }
-        }
-        
-        traverse(root->left,sum);
-         traverse(root->right,sum);
+    void traverse(TreeNode* child,TreeNode* parent,TreeNode* grandparent,int &sum){
+        if(child==NULL) return;
+        if(grandparent!=NULL && grandparent->val%2==0) sum+=child->val;
+        traverse(child->left,child,parent,sum);
+        traverse(child->right,child,parent,sum);
     }
     
     int sumEvenGrandparent(TreeNode* root) {
         int sum=0;
-        traverse(root,sum);
+        traverse(root,NULL,NULL,sum);
         return sum;
     }
 };
