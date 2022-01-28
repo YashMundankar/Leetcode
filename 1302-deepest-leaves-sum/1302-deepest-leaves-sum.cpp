@@ -14,9 +14,10 @@ public:
     
     void traverse(TreeNode* root,int lvl,int &deepest_lvl,int &sum){
         if(root==NULL) return;
-        if(!root -> left && !root -> right) {
-		if(lvl == deepest_lvl) sum += root -> val;
-        else if(lvl > deepest_lvl) sum = root -> val, deepest_lvl=lvl;
+        if(lvl==deepest_lvl) sum+=root->val;
+        if(lvl>deepest_lvl){
+            deepest_lvl=lvl;
+            sum=root->val;
         }
         traverse(root->left,lvl+1,deepest_lvl,sum);
         traverse(root->right,lvl+1,deepest_lvl,sum);
