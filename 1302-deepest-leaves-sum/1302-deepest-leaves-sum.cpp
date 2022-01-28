@@ -11,28 +11,20 @@
  */
 class Solution {
 public:
+    
+    void traverse(TreeNode* root,int lvl,map<int,int>&m1){
+        if(root==NULL) return;
+        m1[lvl]+=root->val;
+        traverse(root->left,lvl+1,m1);
+        traverse(root->right,lvl+1,m1);
+    }
+    
     int deepestLeavesSum(TreeNode* root) {
-        int ans=0;
         if(root==NULL) return 0;
-        queue<TreeNode*>q1;
-        q1.push(root);
-        while(true){
-            int size=q1.size();
-            vector<int>lvl;
-            for(int i=0;i<size;i++){
-                TreeNode* node=q1.front();
-                q1.pop();
-                lvl.push_back(node->val);
-                if(node->left) q1.push(node->left);
-                if(node->right) q1.push(node->right);
-            }
-            if(q1.empty()){
-                for(auto i : lvl){
-                    ans+=i;
-                }
-                break;
-            }
-        }
-        return ans;
+        map<int,int>m1;
+        traverse(root,0,m1);
+        auto it=m1.end();
+        it--;
+        return it->second;
     }
 };
