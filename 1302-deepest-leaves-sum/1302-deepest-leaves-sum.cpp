@@ -12,19 +12,20 @@
 class Solution {
 public:
     
-    void traverse(TreeNode* root,int lvl,map<int,int>&m1){
+    void traverse(TreeNode* root,int lvl,int &deepest_lvl,int &sum){
         if(root==NULL) return;
-        m1[lvl]+=root->val;
-        traverse(root->left,lvl+1,m1);
-        traverse(root->right,lvl+1,m1);
+        if(!root -> left && !root -> right) {
+		if(lvl == deepest_lvl) sum += root -> val;
+        else if(lvl > deepest_lvl) sum = root -> val, deepest_lvl=lvl;
+        }
+        traverse(root->left,lvl+1,deepest_lvl,sum);
+        traverse(root->right,lvl+1,deepest_lvl,sum);
     }
     
     int deepestLeavesSum(TreeNode* root) {
         if(root==NULL) return 0;
-        map<int,int>m1;
-        traverse(root,0,m1);
-        auto it=m1.end();
-        it--;
-        return it->second;
+        int sum=0,deepest_lvl=0;
+        traverse(root,0,deepest_lvl,sum);
+        return sum;
     }
 };
