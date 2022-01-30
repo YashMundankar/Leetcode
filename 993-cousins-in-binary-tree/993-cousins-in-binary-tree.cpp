@@ -11,28 +11,33 @@
  */
 class Solution {
 public:
-    
-void  traverse(TreeNode* root,TreeNode* parent,int lvl,int x,int &xDepth,TreeNode* &xParent,int y,int &yDepth,TreeNode* &yParent){
-        if(root==NULL) return ;
-        if(root->val==x){
-            xDepth=lvl;
-            xParent=parent;
-        }
-        if(root->val==y){
-             yDepth=lvl;
-             yParent=parent;
-            
-        }
-        traverse(root->left,root,lvl+1,x,xDepth,xParent,y,yDepth,yParent);
-        traverse(root->right,root,lvl+1,x,xDepth,xParent,y,yDepth,yParent);
-    }
-    
     bool isCousins(TreeNode* root, int x, int y) {
         if(root==NULL) return false;
-        int xDepth=-1,yDepth=-1;
-        TreeNode* xParent=NULL;
-        TreeNode* yParent=NULL;
-        traverse(root,NULL,0,x,xDepth,xParent,y,yDepth,yParent);
-        return (xDepth==yDepth && xParent!=yParent);
+        queue<TreeNode*>q1;
+        q1.push(root);
+        bool found_x=false, found_y=false; 
+        while(!q1.empty()){
+            int size=q1.size();
+            for(int i=0;i<size;i++){
+                TreeNode* node=q1.front();
+                q1.pop();
+                if(node->left && node->right){
+                if(node->left->val==x && node->right->val==y || node->left->val==y && node->right->val==x ) return false;
+                }
+                if(node->val==x) found_x=true;
+                if(node->val==y) found_y=true;
+                if(node->left) q1.push(node->left);
+                if(node->right) q1.push(node->right);
+            }
+            
+            if(found_x && found_y){
+                return true;
+            }
+            if(found_x || found_y){
+                return false;
+            }
+            
+        }
+        return false;
     }
 };
