@@ -15,8 +15,8 @@ public:
     
     void traverse(TreeNode* root,vector<int>&v1){
         if(root==NULL) return;
-        v1.push_back(root->val);
         traverse(root->left,v1);
+        v1.push_back(root->val);
         traverse(root->right,v1);
     }
     
@@ -25,7 +25,6 @@ public:
         vector<int>v1;
         int mn=INT_MAX;
         traverse(root,v1);
-        sort(v1.begin(),v1.end());
         for(int i=1;i<v1.size();i++){
             mn=min(mn,v1[i]-v1[i-1]);
         }
