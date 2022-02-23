@@ -12,38 +12,14 @@
 class Solution {
 public:
     
-    int convert(string s){
-        int len=s.length();
-        len--;
-        int ans=0;
-        for(auto i:s){
-            if(i=='1') ans=ans|(1<<len);
-            len--;
-        }
-        return ans;
-    }
-    void traverse(TreeNode* root,string op,vector<string>&v1){
-        if(root->left==NULL && root->right==NULL){
-            op+=to_string(root->val);
-            v1.push_back(op);
-            return;
-        }
-        op+=to_string(root->val);
-        if(root->left)traverse(root->left,op,v1);
-        if(root->right)traverse(root->right,op,v1);
-        
-    
-        
+    int func(TreeNode* root,int val){
+        if(!root) return 0;
+        val=(val*2)+root->val;
+        if(root->left==root->right) return val;
+        return func(root->left,val)+func(root->right,val);
     }
     
     int sumRootToLeaf(TreeNode* root) {
-        int sum=0;
-        if(root==NULL) return sum;
-        vector<string>v1;
-        traverse(root,"",v1);
-        for(auto i: v1){
-            sum+=convert(i);
-        }
-        return sum;
+        return func(root,0);
     }
 };
