@@ -13,7 +13,7 @@ public:
     
     bool isHappy(int n) {
         int check=n;
-        map<int,int>hash;
+        unordered_map<int,int>hash;
         while(true){
             check=func(check);
             if(check==1){
