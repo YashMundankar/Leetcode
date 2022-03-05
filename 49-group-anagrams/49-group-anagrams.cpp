@@ -2,15 +2,19 @@ class Solution {
 public:
     
     
-    string func(string s){
-       sort(s.begin(),s.end());
-        return s;
+    vector<int> func(string s){
+       vector<int>v1(27,0);
+        for(auto i: s){
+            v1[i-'a']++;
+        }
+        return v1;
+        
         
     }
     
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
         vector<vector<string>>ans;
-        map<string,vector<string>>m1;
+        map<vector<int>,vector<string>>m1;
         for(auto i: strs){
             if(m1.find(func(i))!=m1.end()) m1[func(i)].push_back(i);
             else{
