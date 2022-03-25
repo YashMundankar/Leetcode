@@ -23,10 +23,10 @@ public:
     
     void fixIt(TreeNode* root,vector<int>v1,int &i){
         if(root==NULL) return;
-        fixIt(root->left,v1,i);
+        if(root->left) fixIt(root->left,v1,i);
         root->val=v1[i];
         i++;
-        fixIt(root->right,v1,i);
+        if(root->right)fixIt(root->right,v1,i);
     }
     
     void recoverTree(TreeNode* root) {
