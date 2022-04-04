@@ -20,7 +20,7 @@ public:
         }
         //cout<<n<<endl;
         int nn=n;
-        if(nn==1) return head;
+        //if(nn==1) return head;
         ListNode* n1=NULL;
         ListNode* n2=NULL;
         p=head;
