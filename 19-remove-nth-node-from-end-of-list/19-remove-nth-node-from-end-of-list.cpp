@@ -16,7 +16,7 @@ public:
         ListNode* slow=dummy;
         ListNode* fast=dummy;
         //int c=n;
-        for(auto i=1;i<=n;++i){
+        for(auto i=1;i<=n;i++){
             fast=fast->next;
         }
         //if(fast==NULL) return NULL;
