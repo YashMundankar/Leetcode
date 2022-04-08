@@ -1,16 +1,20 @@
 class Solution {
 public:
       vector<int> sortArrayByParity(vector<int>& nums) {
-        vector<int>ans;
-         vector<int>odd;
-          vector<int>e;
-          for(auto i : nums){
-              if(i&1) odd.push_back(i);
-              else e.push_back(i);
+        int i=0;
+        int j=nums.size()-1;
+        while(i<j){
+          if(nums[i]&1){
+              int temp=nums[i];
+              nums[i]=nums[j];
+              nums[j]=temp;
+              j--;
           }
-          for(auto i : e) ans.push_back(i);
-          for(auto i : odd) ans.push_back(i);
-          return ans;
+            else{
+                i++;
+            }
+        }
+          return nums;
         
     }
 };
