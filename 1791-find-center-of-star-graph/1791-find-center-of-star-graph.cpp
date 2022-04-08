@@ -2,7 +2,7 @@ class Solution {
 public:
     int findCenter(vector<vector<int>>& edges) {
         vector<vector<int>>AL(edges.size()+2);
-        AL[0].push_back(0);
+        //AL[0].push_back(0);
         for(auto i : edges){
             AL[i[0]].push_back(i[1]);
             AL[i[1]].push_back(i[0]);
