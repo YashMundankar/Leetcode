@@ -1,8 +1,12 @@
 class Solution {
 public:
     bool isPerfectSquare(int num) {
-        int base=pow(num,1.0/2.0);
-        return base*base==num;
+        int i=1;
+        while(num>0){
+            num-=i;
+            i+=2;
+        }
+        return num==0;
         
     }
 };
