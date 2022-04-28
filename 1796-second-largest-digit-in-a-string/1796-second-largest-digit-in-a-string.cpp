@@ -15,7 +15,7 @@ public:
             }
         }
         cout<<first<<" "<<second<<endl;
-        if(first==INT_MIN||second==INT_MIN) return -1;
+        if(second==INT_MIN) return -1;
         return second;
         
     }
